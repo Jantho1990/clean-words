@@ -1,0 +1,26 @@
+{
+  "name": "clean-words",
+  "version": "0.1.0",
+  "description": "A package for generating a list of words, with swear words filtered out.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jantho1990/clean-words.git"
+  },
+  "keywords": [
+    "clean",
+    "words",
+    "filter",
+    "swearing",
+    "clean"
+  ],
+  "author": "Josh Anthony",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jantho1990/clean-words.girt/issues"
+  },
+  "homepage": "https://github.com/Jantho1990/clean-words.girt#readme"
+}
