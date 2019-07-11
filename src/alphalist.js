@@ -10,9 +10,11 @@ const words = JSON.parse(fs.readFileSync(path.join('.', 'clean_words.json'), 'ut
 // Arg1 = Output directory
 // Arg2 = Letter
 // Arg3 = Number of words to output.
+// Arg4 = Ignore existing lists, aka rebuild everything.
 const outputPath = process.argv[2] || false
 const listLetter = process.argv[3] || 'all'
 const outputAmount = process.argv[4] || 100
+const ignoreLists = process.argv[5] || false
 
 function randomInt(max) {
     return Math.floor(Math.random() * Math.floor(max))
@@ -34,12 +36,26 @@ console.log(`Word pool count: ${wordPool.a.length}`)
 
 console.log('Word pool generated. Filtering words...')
 
-const wordList = []
+// If we aren't rebuilding the lists, get the existing
+// word list for this letter and figure out how many words
+// it currently has. We'll only add enough new words to
+// fill the list to the specified output amount.
+let wordList = []
+if (!ignoreLists) {
+    wordList = JSON.parse(fs.readFileSync(path.join('.', `lists/word_list_${listLetter}.json`), 'utf8'))
+}
+
+// Generate the word list.
 Object.values(wordPool).forEach(list => {
-    const max = list.length > outputAmount
+    let max = list.length > outputAmount
         ? outputAmount
         : list.length
-    
+    let len = wordList.filter(word => word.toLowerCase().substr(0, 1) === listLetter.toLowerCase()).length
+    if (max > len) {
+        max -= len
+    }
+
+
     for (let i = 0; i < max; i++) {
         let w = randomInt(list.length)
         let randomWord = list[w]
