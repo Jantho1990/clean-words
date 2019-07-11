@@ -64,7 +64,7 @@ Object.values(wordPool).forEach(list => {
 })
 
 if (outputPath) {
-    fs.writeFileSync(path.join(outputPath, `word_list_${listLetter}.json`), JSON.stringify(wordList), { encoding: 'utf8'}, err => {
+    fs.writeFileSync(path.join(outputPath, `word_list_${listLetter}.json`), JSON.stringify(wordList, undefined, 4), { encoding: 'utf8'}, err => {
         if (err) {
             throw err
         }
