@@ -32,8 +32,6 @@ words.forEach((word, i) => {
     }
 })
 
-console.log(`Word pool count: ${wordPool.a.length}`)
-
 console.log('Word pool generated. Filtering words...')
 
 // If we aren't rebuilding the lists, get the existing
@@ -41,7 +39,7 @@ console.log('Word pool generated. Filtering words...')
 // it currently has. We'll only add enough new words to
 // fill the list to the specified output amount.
 let wordList = []
-if (!ignoreLists) {
+if (!ignoreLists && fs.existsSync(path.join('.', `lists/word_list_${listLetter}.json`))) {
     wordList = JSON.parse(fs.readFileSync(path.join('.', `lists/word_list_${listLetter}.json`), 'utf8'))
 }
 
